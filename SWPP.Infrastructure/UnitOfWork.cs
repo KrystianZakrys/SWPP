@@ -8,7 +8,7 @@ namespace SWPP.Infrastructure
         private SWPPContext context;
         private Repository<Module> moduleRepository;
         private Repository<City> cityRepository;
-        private Repository<SearchHistory> searchHistoryRepository;
+        private SearchHistoryRepository searchHistoryRepository;
 
         public UnitOfWork(SWPPContext context) { this.context = context; }
 
@@ -34,17 +34,17 @@ namespace SWPP.Infrastructure
                 return cityRepository;
             }
         }
-        public Repository<SearchHistory> SearchHistoryRepository
+        public SearchHistoryRepository SearchHistoryRepository
         {
             get
             {
                 if (this.searchHistoryRepository == null)
                 {
-                    this.searchHistoryRepository = new Repository<SearchHistory>(context);
+                    this.searchHistoryRepository = new SearchHistoryRepository(context);
                 }
                 return searchHistoryRepository;
             }
-        }
+        }       
 
         public void Save()
         {

@@ -13,6 +13,6 @@ namespace SWPP.Infrastructure
         void Save();
         Repository<Module> ModuleRepository { get; }
         Repository<City> CityRepository { get; }
-        Repository<SearchHistory> SearchHistoryRepository { get; }
+        SearchHistoryRepository SearchHistoryRepository { get; }
     }
 }

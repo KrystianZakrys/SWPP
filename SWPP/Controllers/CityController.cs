@@ -38,7 +38,9 @@ namespace SWPP.WebApi.Controllers
         public Task<Unit> Post([FromBody] CityDto value)
         {
             return _mediator.Send(new AddNewCityCommand.Request(){
-
+                CostOfWorkingHour = value.CostOfWorkingHour,
+                Name = value.Name,
+                TrasportCost = value.TrasportCost,
             });
         }
 
@@ -47,7 +49,10 @@ namespace SWPP.WebApi.Controllers
         public Task<Unit> Put(Guid id, [FromBody] CityDto value)
         {
             return _mediator.Send(new UpdateCityCommand.Request(){
-
+                TrasportCost = value.TrasportCost,
+                Name = value.Name,
+                CostOfWorkingHour=value.CostOfWorkingHour,
+                Id = id
             });
         }
 

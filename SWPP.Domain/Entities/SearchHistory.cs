@@ -13,5 +13,15 @@ namespace SWPP.Domain.Entities
         public virtual List<Module> Modules { get; private set; } = new List<Module>();
 
         public SearchHistory() { }
+
+        public static SearchHistory Create(City city, List<Module> modules, double productionCost)
+        {
+            return new SearchHistory()
+            {
+                City = city,
+                Modules = modules,
+                ProductionCost = productionCost
+            };
+        }
     }
 }
