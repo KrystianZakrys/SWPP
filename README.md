@@ -3,8 +3,8 @@ First exercise. Create system supporting production process.
 
 - [ ] Unit tests
 - [ ] Integration tests
-- [ ] SearchHistoryController and its CQRS
-- [ ] Refactor
+- [x] SearchHistoryController and its CQRS
+- [x] Refactor
 - [X] DDD
 - [x] Unit of work
 - [x] Generic Repository
