@@ -14,14 +14,31 @@ namespace SWPP.Domain.Entities
 
         public SearchHistory() { }
 
-        public static SearchHistory Create(City city, List<Module> modules, double productionCost)
+        /// <summary>
+        /// Creates and calculates production cost search history.
+        /// </summary>
+        /// <param name="city">production city</param>
+        /// <param name="modules">device modules</param>
+        /// <returns>search history entry</returns>
+        public static SearchHistory Create(City city, List<Module> modules)
         {
-            return new SearchHistory()
+            var history = new SearchHistory()
             {
                 City = city,
                 Modules = modules,
-                ProductionCost = productionCost
             };
+
+            history.CalculateCost();
+
+            return history;
         }
+
+        /// <summary>
+        /// Calculates production cost 
+        /// </summary>
+        public void CalculateCost()
+        {
+            ProductionCost = (City.TrasportCost + Modules.Sum(x => x.Price) + Modules.Sum(x => x.AssemblyTime) * City.CostOfWorkingHour) * 1.3;
+        } 
     }
 }

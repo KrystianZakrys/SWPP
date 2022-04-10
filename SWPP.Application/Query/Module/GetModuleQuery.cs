@@ -34,7 +34,7 @@ namespace SWPP.Core.Query.Module
                 return ModelDtoMapper.For(module).Map();
             }
 
-            return null;
+            return new ModuleDetailsDto();
         }
     }
 }

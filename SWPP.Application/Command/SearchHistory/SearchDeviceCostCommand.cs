@@ -38,9 +38,7 @@ namespace SWPP.Core.Command.SearchHistory
                     return unitOfWork.ModuleRepository.Get(x);
                 }).ToList();
 
-                var cost = (city.TrasportCost + modules.Sum(x => x.Price) + modules.Sum(x => x.AssemblyTime) * city.CostOfWorkingHour) * 1.3;
-
-                search = Domain.Entities.SearchHistory.Create(city, modules, cost);
+                search = Domain.Entities.SearchHistory.Create(city, modules);
 
                 unitOfWork.SearchHistoryRepository.Add(search);
                 unitOfWork.Save();                

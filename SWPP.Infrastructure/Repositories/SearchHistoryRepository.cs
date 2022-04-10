@@ -15,7 +15,7 @@ namespace SWPP.Infrastructure.Repositories
 
         public IEnumerable<SearchHistory> GetByCityAndModules(Guid cityId, List<Guid> moduleIds)
         {
-            return this.dbSet.Where(x => x.City.Id == cityId && !moduleIds.Except(x.Modules.Select(y => y.Id)).Any());
+            return this.dbSet.Where(x => x.City.Id == cityId && !x.Modules.Any(y => moduleIds.Contains(y.Id)));
         }
     }
 }

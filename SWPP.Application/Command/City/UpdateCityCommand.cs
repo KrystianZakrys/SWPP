@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SWPP.Core.Command.City
 {
-    public class UpdateCityCommand : IRequestHandler<UpdateCityCommand.Request, Unit>
+    public class UpdateCityCommand : IRequestHandler<UpdateCityCommand.Request, bool>
     {
-        public class Request : IRequest<Unit>
+        public class Request : IRequest<bool>
         {
             public Guid Id { get; set; }
             public string Name { get; set; }
@@ -25,7 +25,7 @@ namespace SWPP.Core.Command.City
             this.unitOfWork = unitOfWork;
         }
 
-        public Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+        public Task<bool> Handle(Request request, CancellationToken cancellationToken)
         {
             var entity = unitOfWork.CityRepository.Get(request.Id);
             if(entity != null)
@@ -33,7 +33,7 @@ namespace SWPP.Core.Command.City
                 entity.Update(request.Name, request.TrasportCost, request.CostOfWorkingHour);
                 unitOfWork.Save();
             }
-            return null;
+            return Task.FromResult(true);
         }
     }
 }

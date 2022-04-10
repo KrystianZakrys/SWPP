@@ -2,6 +2,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using SWPP.Core.Command.Module;
 using SWPP.Infrastructure;
+using SWPP.WebApi.Middleware;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,11 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseExceptionHandler(new ExceptionHandlerOptions()
+{
+    ExceptionHandler = new ExceptionMiddleware().Invoke
+});
 
 app.MapControllers();
 

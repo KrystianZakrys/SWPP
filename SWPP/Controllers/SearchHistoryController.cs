@@ -20,6 +20,7 @@ namespace SWPP.WebApi.Controllers
         [HttpPost]
         public Task<SearchResultDto> Post([FromBody] SearchDto request)
         {
+            throw new NotImplementedException();
             return _mediator.Send(new SearchDeviceCostCommand.Request()
             {
                 ModuleIds = request.ModuleIds,

@@ -35,7 +35,7 @@ namespace SWPP.WebApi.Controllers
 
         // POST api/<CityController>
         [HttpPost]
-        public Task<Unit> Post([FromBody] CityDto value)
+        public Task<bool> Post([FromBody] CityDto value)
         {
             return _mediator.Send(new AddNewCityCommand.Request(){
                 CostOfWorkingHour = value.CostOfWorkingHour,
@@ -46,7 +46,7 @@ namespace SWPP.WebApi.Controllers
 
         // PUT api/<CityController>/5
         [HttpPut("{id}")]
-        public Task<Unit> Put(Guid id, [FromBody] CityDto value)
+        public Task<bool> Put(Guid id, [FromBody] CityDto value)
         {
             return _mediator.Send(new UpdateCityCommand.Request(){
                 TrasportCost = value.TrasportCost,
@@ -58,7 +58,7 @@ namespace SWPP.WebApi.Controllers
 
         // DELETE api/<CityController>/5
         [HttpDelete("{id}")]
-        public Task<Unit> Delete(Guid id)
+        public Task<bool> Delete(Guid id)
         {
             return _mediator.Send(new DeleteCityCommand.Request(){ Id = id});
         }

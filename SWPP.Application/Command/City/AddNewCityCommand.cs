@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SWPP.Core.Command.City
 {
-    public class AddNewCityCommand : IRequestHandler<AddNewCityCommand.Request, Unit>
+    public class AddNewCityCommand : IRequestHandler<AddNewCityCommand.Request, bool>
     {
-        public class Request : IRequest<Unit>
+        public class Request : IRequest<bool>
         {
             public string Name { get; set; }
             public double TrasportCost { get; set; }
@@ -24,12 +24,12 @@ namespace SWPP.Core.Command.City
             this.unitOfWork = unitOfWork;
         }
 
-        public Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+        public Task<bool> Handle(Request request, CancellationToken cancellationToken)
         {
             var city = Domain.Entities.City.Create(request.Name, request.TrasportCost, request.CostOfWorkingHour);
             unitOfWork.CityRepository.Add(city);
             unitOfWork.Save();
-            return null;
+            return Task.FromResult(true);
         }
     }
 }

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SWPP.Core.Command.City
 {
-    public class DeleteCityCommand : IRequestHandler<DeleteCityCommand.Request, Unit>
+    public class DeleteCityCommand : IRequestHandler<DeleteCityCommand.Request, bool>
     {
-        public class Request : IRequest<Unit>
+        public class Request : IRequest<bool>
         {
             public Guid Id { get; set; }
             public string Name { get; set; }
@@ -25,11 +25,11 @@ namespace SWPP.Core.Command.City
             this.unitOfWork = unitOfWork;
         }
 
-        public Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+        public Task<bool> Handle(Request request, CancellationToken cancellationToken)
         {
             unitOfWork.CityRepository.Delete(request.Id);
             unitOfWork.Save();
-            return null;
+            return Task.FromResult(true);
         }
     }
 }
